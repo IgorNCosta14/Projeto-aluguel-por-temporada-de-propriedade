@@ -1,9 +1,10 @@
 import { DateTime } from 'luxon'
 import { BaseModel, column } from '@ioc:Adonis/Lucid/Orm'
+import { v4 as uuidV4 } from 'uuid';
 
 export default class User extends BaseModel {
   @column({ isPrimary: true })
-  public id: number
+  public id: string
 
   @column()
   public name: string;
@@ -18,9 +19,17 @@ export default class User extends BaseModel {
   public password: string;
 
   @column()
-  public isAdmin: boolean;
+  isAdmin: boolean;
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
+
+  constructor () {
+    super();
+    if(!this.id) {
+      this.id = uuidV4()
+      this.isAdmin = false
+    }
+  }
 
 }

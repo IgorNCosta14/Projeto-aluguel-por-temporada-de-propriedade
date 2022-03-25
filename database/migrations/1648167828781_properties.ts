@@ -5,13 +5,13 @@ export default class Properties extends BaseSchema {
 
   public async up () {
     this.schema.createTable(this.tableName, (table) => {
-      table.increments('id')
-      table.string('propertyName')
+      table.uuid('id').primary()
+      table.string('propertyName').notNullable
       table.string('description')
-      table.string('adress')
+      table.string('adress').notNullable
       table.string('typeOfProperty')
-      table.boolean('available')
-      //number
+      table.boolean('available').notNullable
+      table.float('daily_rate').notNullable
       table.timestamp('created_at', { useTz: true })
     })
   }

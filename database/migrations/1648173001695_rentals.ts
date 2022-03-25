@@ -5,13 +5,13 @@ export default class Rentals extends BaseSchema {
 
   public async up () {
     this.schema.createTable(this.tableName, (table) => {
-      table.increments('id')
-
-      /**
-       * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL
-       */
-      table.timestamp('created_at', { useTz: true })
-      table.timestamp('updated_at', { useTz: true })
+      table.uuid('id')
+      table.uuid('user_id')
+      table.uuid('property_id')
+      table.boolean('rentFinished')
+      table.float('totalRate')
+      table.timestamp('start_Date', { useTz: true })
+      table.timestamp('end_Date', { useTz: true })
     })
   }
 

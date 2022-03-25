@@ -3,10 +3,12 @@ import User from 'App/Models/User';
 
 export default class UsersController {
   public async create({ request }: HttpContextContract) {
-    const { name, username } = request.only(["name", "username"]);
+    const { name, email, cpf, password } = request.only(["name", "email", "cpf", "password"]);
     const user = await User.create({
       name,
-      username
+      email,
+      cpf,
+      password
     })
     return user;
   }
