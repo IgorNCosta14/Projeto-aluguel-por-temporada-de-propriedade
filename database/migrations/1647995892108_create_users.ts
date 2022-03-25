@@ -5,11 +5,13 @@ export default class CreateUsers extends BaseSchema {
 
   public async up () {
     this.schema.createTable(this.tableName, (table) => {
-      table.increments('id')
+      table.increments("id")
       table.string("name")
-      table.string("username")
-      table.timestamp('created_at', { useTz: true })
-      table.timestamp('updated_at', { useTz: true })
+      table.string("email")
+      table.string("cpf")
+      table.string("password")
+      table.boolean("isAdmin")
+      table.timestamp("created_at", { useTz: true })
     })
   }
 
